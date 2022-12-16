@@ -3,63 +3,86 @@ import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 
-const GetDatas = () => {
+/**
+ * create the mock data
+ * @return Mocking data
+*/
+const GetMock = () => {
     const {
         USER_MAIN_DATA,
         USER_ACTIVITY,
         USER_AVERAGE_SESSIONS,
         USER_PERFORMANCE
     } = require("../assets/datas/data__mock__")
-    const mocks = [USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE];
-    const mock = mocks//JSON.stringify(mocks)
-    //console.log(mock)
-    
-    const [error, setError] = useState(null);
-    const [post, setPost] = useState([]);
-    
+    const mocks = [
+        {data: USER_MAIN_DATA[0]},
+        {data: USER_ACTIVITY[0]},
+        {data: USER_AVERAGE_SESSIONS[0]},
+        {data: USER_PERFORMANCE[0]}
+    ];
+    const mock = JSON.stringify(mocks)
+
+    return mock
+}
+
+/**
+ * variables initialisation
+ * @returns Array
+ */
+const InitVariables = () => {
     const location = useLocation();
     const ArrayPath = location.pathname.split('/');
     const userID = ArrayPath.filter(node => 
         (Number.isInteger( parseInt(node) )) ? node : null
     )[0];
-    const client = axios.create({
-        baseURL: `http://localhost:3000/user/${userID}/`
-    });
-    const folder = useMemo(()=> (["", "activity", "average-sessions", "performance"]),[]);
-    //const allApi = folder.map(el => client.get(el))
-    const allApi = useMemo(() => (folder.map(el => client.get(el))),[folder, client])
-    /*
-    const SetRes = (res) => {
-        useEffect(()=>{
-            setPost([res]);
-        },[res])
-    }*/
-    const getUserDatas = async() =>{
-        const ApiArray = [];
-        //const res = await axios.all(allApi)
-        await axios.all(allApi)
-            .then(axios.spread((...responses) => {
-                responses.map(res => ApiArray.push(res.data));
-                const nApi = [...new Set(ApiArray)];
-                //const napi = JSON.stringify(nApi);
-                const napi = nApi;
-                setPost(napi);
-            }))
-            .catch(error => {
-                setError(error);
-            });
-        //console.log(res)
-    }
     
-    useEffect(() => {
-        getUserDatas();
-    },[folder]); // eslint-disable-line
-
-    if(error) return `Error : ${error.message}`;
-    //console.log(post)
-    if(!post) return JSON.stringify(mock)
-    return JSON.stringify(post)
+    return ["http://localhost:3000/user/", userID]
 }
 
+/**
+ * fetch data with axios 
+ * @returns array Datas
+ */
+const GetDatas = () => {    
+    const link = InitVariables()[0];
+    const userID = InitVariables()[1];
+
+    const [error, setError] = useState(null);
+    const [post, setPost] = useState([]);
+    
+    const client = axios.create({
+        baseURL: `${link}${userID}/`
+    });
+    const folder = useMemo(() =>(["", "activity", "average-sessions", "performance"]),[]);
+    const allApi = folder.map(el => client.get(el));
+
+    useEffect(() => {
+        const getUserDatas = async() =>{
+            try {
+                const ApiArray = [];
+                await axios.all(allApi)
+                .then(axios.spread((...responses) => {
+                    responses.map(res => ApiArray.push(res.data));
+                    return responses;
+                }))
+
+                setPost(ApiArray)
+            } catch (error) {
+                setError(error)
+            }
+        }
+        getUserDatas();
+    },[]); // eslint-disable-line
+
+    //console.log(post)
+    if (error) {
+        if(error.message === "Network Error"){
+            console.log(error)
+            return GetMock()
+        }
+    }
+    if(!post) return GetMock()
+    return JSON.stringify(post)
+}
 
 export default GetDatas;
