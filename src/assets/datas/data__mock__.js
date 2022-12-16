@@ -81,11 +81,11 @@ const USER_AVERAGE_SESSIONS = [
             },
             {
                 day: 5,
-                sessionLength: 0
+                sessionLength: 81
             },
             {
                 day: 6,
-                sessionLength: 0
+                sessionLength: 58
             },
             {
                 day: 7,
@@ -113,11 +113,11 @@ const USER_PERFORMANCE = [
                 kind: 1
             },
             {
-                value: 620,
+                value: 220,
                 kind: 2
             },
             {
-                value: 440,
+                value: 240,
                 kind: 3
             },
             {
@@ -125,7 +125,7 @@ const USER_PERFORMANCE = [
                 kind: 4
             },
             {
-                value: 950,
+                value: 210,
                 kind: 5
             },
             {
