@@ -4,6 +4,10 @@ import Header from './Header';
 import VnavBar from './VnavBar';
 import RouterComponent from './RouterComponent';
 
+/**
+ * that function return all the application to the index.js
+ * @returns 
+ */
 function App() {
   return (
       <BrowserRouter>
