@@ -1,6 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import PropTypes from 'prop-types';
 
+/**
+ * get props uses to draw activity graphic
+ * @param {*} param0 
+ * @returns 
+ */
 function Activity({data}) {
   //console.log(data)
   const d3chart = useRef();
@@ -9,6 +15,9 @@ function Activity({data}) {
     const w = 835;
     const padding = 30;
 
+    /**
+     * initialise svg element
+     */
     const svg = d3.select(d3chart.current)
     .attr("width", w)
     .attr("height", h);
@@ -69,6 +78,9 @@ function Activity({data}) {
       .attr("font-weight", 500)
       .attr("line-height", 24);
 
+    /**
+     * create group that contain all graphics bars
+     */
     const group = svg.selectAll("g.show-me")
     .data(data.sessions)
     .enter()
@@ -151,6 +163,9 @@ function Activity({data}) {
     .attr("fill", "red");
 
     // AXIS
+    /**
+     * create x axis bar
+     */
     const xData = data.sessions.map((elem, k)=> k);
     const xlogScale = d3.scaleLog();
     xlogScale
@@ -166,11 +181,14 @@ function Activity({data}) {
 	  .text(d => d + 1)
     .attr("fill","gray");
    
+    /**
+     * create y axis bar
+     */
     const yData = data.sessions.map((elem)=> elem.kilogram);
     const yDataMax = d3.max(yData, d => d);
     const newData = [yDataMax - 1, yDataMax, yDataMax + 1].reverse();
     const ylogScale = d3.scaleLog();
-    console.log(yData)
+    //console.log(yData)
     ylogScale
 	  .domain([yDataMax - 1, yDataMax + 1])
     .range([h - (padding * 3), padding]);
@@ -191,6 +209,19 @@ function Activity({data}) {
       <svg ref={d3chart}></svg>
     </div>
   )
+}
+
+Activity.propTypes = {
+  data: PropTypes.exact({
+    userId: PropTypes.number,
+    sessions: PropTypes.arrayOf(
+      PropTypes.exact({
+        day: PropTypes.string,
+        kilogram: PropTypes.number,
+        calories: PropTypes.number,
+      })
+    ),
+  })
 }
 
 export default Activity

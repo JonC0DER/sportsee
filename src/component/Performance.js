@@ -1,18 +1,30 @@
 import React, { useEffect, useRef} from 'react'
 import * as d3 from 'd3';
+import PropTypes from 'prop-types';
 
-function Performance({data}) {
-  //console.log(data);
+/**
+ * get props uses to draw performance graphic
+ * @param {*} param0 
+ * @returns 
+ */
+function Performance({kindValues, kind}) {
+  //console.log(kind);
   const d3chart = useRef();
   
   useEffect(() => {
     const h = 258;
     const w = 263;
     
+    /**
+     * initialise svg element
+     */
     const svg = d3.select(d3chart.current)
     .attr("width", w)
     .attr("height", h);
 
+    /**
+     * create a svg group that contain all the polygons
+     */
     const groupPolygon = svg.append("g")
     .attr("class", "group-polygon");
 
@@ -25,7 +37,11 @@ function Performance({data}) {
     const fourPaddingPolyg = thirdPaddingPolyg + 20;
     const fivePaddingPolyg = fourPaddingPolyg + 20;
      
-    // ORIGIN POLYGON
+    /**
+     * the array contain objects
+     * each object the [x, y] coordinates for each polygon
+     * we need to draw
+     */
     const fourDivid = 2.7;
     const fiveDivid = 2.45;
     const polygon = [
@@ -78,7 +94,11 @@ function Performance({data}) {
         secondLeftPoint: [fivePaddingPolyg, (ph * 2) - (fourPaddingPolyg/fiveDivid)]
       }
   ];
-    
+  
+  /**
+   * we use a forEach loop on 
+   * the polygon array to draw every polygon
+   */
   polygon.forEach((polyg, i) => {
     return (i !== 0)?groupPolygon.append('polygon')
     .attr('points', 
@@ -94,26 +114,37 @@ function Performance({data}) {
     .attr("stroke-width", 1): null;
   })
 
-    // VALUES POLYGON
-    const valuesKind = Object.values(data.kindValues);
+    /**
+     * kind values of the red polygon
+     */
+    const valuesKind = Object.values(kindValues);
     //console.log(valuesKind)
-    const mh = h/2;
-    const start = [pw, mh];
+    const halfHeight = h/2;
+    const graphicCenter = [pw, halfHeight];
     const end = 300; // 3
 
+    /**
+     * this array contain values that help stay on
+     * invisible lines from the center, to the corner of the polygons
+     */
     const kindLines = [
-      [(pw - polygon[1].firstLeftPoint[0])/100, (mh - polygon[1].firstLeftPoint[1])/100],
-      [(pw - polygon[1].secondLeftPoint[0])/100, (polygon[1].secondLeftPoint[1] - mh)/100],
-      [0, (polygon[1].lowPoint[1] - mh)/100],
-      [(polygon[1].secondRightPoint[0] - pw)/100, (polygon[1].secondRightPoint[1] - mh)/100],
-      [(polygon[1].firstRightPoint[0] - pw)/100, (mh - polygon[1].firstRightPoint[1])/100],
-      [0, (mh - polygon[1].highPoint[1])/100]
+      [(pw - polygon[1].firstLeftPoint[0])/100, (halfHeight - polygon[1].firstLeftPoint[1])/100],
+      [(pw - polygon[1].secondLeftPoint[0])/100, (polygon[1].secondLeftPoint[1] - halfHeight)/100],
+      [0, (polygon[1].lowPoint[1] - halfHeight)/100],
+      [(polygon[1].secondRightPoint[0] - pw)/100, (polygon[1].secondRightPoint[1] - halfHeight)/100],
+      [(polygon[1].firstRightPoint[0] - pw)/100, (halfHeight - polygon[1].firstRightPoint[1])/100],
+      [0, (halfHeight - polygon[1].highPoint[1])/100]
     ];
 
+    /**
+     * this function made all the math that help to draw
+     * each point of the red polygon and stay on the invisible lines
+     * @returns array
+     */
     const kindPercentCalc = () => {
-      return valuesKind.map((kval) => {
-        const currentPercent = (kval.value / end) * 100;
-        const index = kval.kind - 1;
+      return valuesKind.map((kindVal) => {
+        const currentPercent = (kindVal.value / end) * 100;
+        const index = kindVal.kind - 1;
         const initCalc = [
           kindLines[index][0] * currentPercent,
           kindLines[index][1] * currentPercent
@@ -121,22 +152,22 @@ function Performance({data}) {
         const calc = [];
         switch (index) {
           case 0:
-            [calc[0], calc[1]] = [start[0] - initCalc[0], start[1] - initCalc[1]]
+            [calc[0], calc[1]] = [graphicCenter[0] - initCalc[0], graphicCenter[1] - initCalc[1]]
             break;
           case 4:
-            [calc[0], calc[1]] = [start[0] + initCalc[0], start[1] - initCalc[1]]
+            [calc[0], calc[1]] = [graphicCenter[0] + initCalc[0], graphicCenter[1] - initCalc[1]]
             break;
           case 1:
-            [calc[0], calc[1]] = [start[0] - initCalc[0], start[1] + initCalc[1]]
+            [calc[0], calc[1]] = [graphicCenter[0] - initCalc[0], graphicCenter[1] + initCalc[1]]
             break;
           case 3:
-            [calc[0], calc[1]] = [start[0] + initCalc[0], start[1] + initCalc[1]]
+            [calc[0], calc[1]] = [graphicCenter[0] + initCalc[0], graphicCenter[1] + initCalc[1]]
             break;
           case 2:
-            [calc[0], calc[1]] = [start[0], start[1] + initCalc[1]]
+            [calc[0], calc[1]] = [graphicCenter[0], graphicCenter[1] + initCalc[1]]
             break;
           case 5:
-            [calc[0], calc[1]] = [start[0], start[1] - initCalc[1]]
+            [calc[0], calc[1]] = [graphicCenter[0], graphicCenter[1] - initCalc[1]]
             break;        
           default:
             break;
@@ -146,7 +177,9 @@ function Performance({data}) {
     }
     const vP = kindPercentCalc();
     //console.log(vP)
-    // VALUES POLYGON
+    /**
+     * draw the red polygon with the kindValues
+     */
     groupPolygon.append('polygon')
     .attr('points', 
       `${vP[0][0]} ${vP[0][1]},
@@ -161,7 +194,9 @@ function Performance({data}) {
     .attr("stroke", "none")
     .attr("stroke-width", 1);
 
-    // TEXT LEGEND
+    /**
+     * write the text in the corners of the polygon
+     */
     const groupText = svg.append("g")
     .attr("class", "group-text");
 
@@ -169,13 +204,13 @@ function Performance({data}) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
     
-    const kind = Object.values(data.kind);
-    const textPos = Object.values(polygon[0]);//.sort().reverse();
+    const kinds = Object.values(kind);
+    const textPos = Object.values(polygon[0]);
     //console.log(kind)
     //console.log(textPos)
     groupText
     .selectAll("text")
-    .data(kind)
+    .data(kinds)
     .enter()
     .append("text")
     .text((d) => capitalizeFirstLetter(d))
@@ -184,14 +219,23 @@ function Performance({data}) {
     .attr("font-size", 10)
     .attr("font-weight", "400")
     .attr("fill", "white");
-
   });
- 
+  
   return (
     <div className="performance">
       <svg ref={d3chart}></svg>
     </div>
   )
+}
+
+Performance.propTypes = {
+  kindValues: PropTypes.arrayOf(
+    PropTypes.exact({
+      value: PropTypes.number,
+      kind: PropTypes.number
+    }).isRequired
+  ),
+  kind: PropTypes.objectOf(PropTypes.string),
 }
 
 export default Performance

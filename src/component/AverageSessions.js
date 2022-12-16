@@ -1,8 +1,13 @@
 import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3';
+import PropTypes from 'prop-types';
 
+/**
+ * get props uses to draw average session graphic
+ * @param {*} param0 
+ * @returns 
+ */
 function AverageSessions({data}) {
-
   //console.log(data)
   const d3chart = useRef();
 
@@ -11,6 +16,9 @@ function AverageSessions({data}) {
     const w = 263;
     const padding = 30;
     
+    /**
+     * initialise svg element
+     */
     const svg = d3.select(d3chart.current)
     .attr("width", w)
     .attr("height", h);
@@ -70,6 +78,9 @@ function AverageSessions({data}) {
     .attr("font-weight", "bold")
     .attr("fill", "black");
 
+    /**
+     * draw circle on :hover of the line
+     */
 	  group
     .append('circle')
 	  .attr('cx', d => d[0] * padding)
@@ -82,6 +93,9 @@ function AverageSessions({data}) {
     .attr("stroke-width", 6);
 
     // AXIS
+    /**
+     * draw X axis on the bottom
+     */
     const xData = ["L", "M", "M", "J", "V", "S", "D"];
     //const xData = data.sessions.map((elem, k)=> week[k]);
     const xlogScale = d3.scaleLog();
@@ -105,6 +119,16 @@ function AverageSessions({data}) {
       <svg ref={d3chart}></svg>
     </div>
   )
+}
+
+AverageSessions.propTypes = {
+  data: PropTypes.shape({
+    sessions: PropTypes.arrayOf(
+      PropTypes.exact({
+        day: PropTypes.number,
+        sessionLength: PropTypes.number
+      })).isRequired,
+  })
 }
 
 export default AverageSessions
