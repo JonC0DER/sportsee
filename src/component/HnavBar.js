@@ -1,6 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+/**
+ * the component return the Horizontal navigation menu
+ * @returns 
+ */
 function HnavBar (){
   return (
       <nav className='h-nav'>

@@ -1,7 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+/**
+ * the component return the vertical navigation menu
+ * and the copyright
+ * @returns 
+ */
 function VnavBar() {
 
     return (
