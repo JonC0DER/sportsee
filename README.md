@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Sportsee application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### Presentation
 
-## Available Scripts
+Sportsee is an App project that allow people to follow in graphics any of they owne
+efforts to gain muscles or losing weight.
 
-In the project directory, you can run:
+### Launch the Project
 
-### `npm start`
+##### 1 - The back-end
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+you will need the Back-end of the project first.
+Clone the repository [Sportsee Back-end](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+when you finish just go inside the folder
 
-### `npm test`
+    - cd P9-front-end-dashbord/
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+then launch the server with the following command
 
-### `npm run build`
+    - yarn dev
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+the server will be available at this address: - [http://localhost:3000](http://localhost:3000)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##### 2 - The front-end
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+just Clone this current repository.
+go to the sprotsee/ folder then launch these following commands:
 
-### `npm run eject`
+    - npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```json
+    "dependencies": {
+    "@fortawesome/free-regular-svg-icons": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.1.3",
+    "d3": "^7.6.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-loading": "^2.0.3",
+    "react-router-dom": "^6.4.3",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+    }
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+the command above is going to download all the dependencies
+you need for this project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+then launch the front-end with:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    - npm start
 
-## Learn More
+By default the server will try to launch at [htpp://localhost:3000] but...!
+the back-end is already launch at this address.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Wait until the server ask you to launch at another address and press enter.
+it gonna be this one [http://localhost:3001](http://localhost:3001).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You gonna be able to see the project in your web-browser at the same address
