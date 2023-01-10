@@ -1,13 +1,13 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/Home';
-import ChooseUser from '../pages/ChooseUser';
+import UserAccount from '../pages/UserAccount';
 
 function RouterComponent() {
   return (
     <Routes>
-      <Route path="/" element={<ChooseUser />} />
-      <Route path="/user/:id" element={<Home />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/user/:id" element={<UserAccount />} />
     </Routes>
   )
 }
