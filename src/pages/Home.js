@@ -13,21 +13,21 @@ import Greetings from '../component/Greetings';
 /**
  * @returns Home component
  */
-export default function Home(){
+export default function Home() {
     /**
      * loader help the user to understand 
      * that we are fetching the datas
      * @returns loader component
      */
     const Loading = () => {
-        return(
+        return (
             <div className='loading'>
                 <h1>LOADING...</h1>
                 <div className='loader'>
-                    {<ReactLoading 
-                    type="bars" 
-                    color="red"
-                    height={800} width={200} />}
+                    {<ReactLoading
+                        type="bars"
+                        color="red"
+                        height={800} width={200} />}
                 </div>
             </div>
         )
@@ -48,30 +48,30 @@ export default function Home(){
         //console.log(ex)
         if (ex === '[]') {
             console.log('not load')
-        }else{
+        } else {
             //console.log(ex)
             const dApi = JSON.parse(ex);
             //console.log(dApi[0].data.userInfos)
             const user = {
-                id:dApi[0].data.id,
-                keydata:dApi[0].data.keyData,
-                score:(!dApi[0].data.score)? dApi[0].data.todayScore: dApi[0].data.score,
-                age:dApi[0].data.userInfos.age,
-                firstName:dApi[0].data.userInfos.firstName,
-                lastName:dApi[0].data.userInfos.lastName
+                id: dApi[0].data.id,
+                keydata: dApi[0].data.keyData,
+                score: (!dApi[0].data.score) ? dApi[0].data.todayScore : dApi[0].data.score,
+                age: dApi[0].data.userInfos.age,
+                firstName: dApi[0].data.userInfos.firstName,
+                lastName: dApi[0].data.userInfos.lastName
             }
             const activity = {
-                userId:dApi[1].data.userId,
-                sessions:dApi[1].data.sessions
+                userId: dApi[1].data.userId,
+                sessions: dApi[1].data.sessions
             }
             const average = {
-                userId:dApi[2].data.userId,
-                sessions:dApi[2].data.sessions
+                userId: dApi[2].data.userId,
+                sessions: dApi[2].data.sessions
             }
             const performance = {
-                userId:dApi[3].data.userId,
-                kindValues:dApi[3].data.data,
-                kind:dApi[3].data.kind
+                userId: dApi[3].data.userId,
+                kindValues: dApi[3].data.data,
+                kind: dApi[3].data.kind
             }
             //console.log( [user, activity, average, performance] )
             return [user, activity, average, performance]
@@ -84,32 +84,32 @@ export default function Home(){
      * @param {*} param0 
      * @returns HomeRender component
      */
-    const HomeRender = ({dataFormat}) => {
-   
-        return(
+    const HomeRender = ({ dataFormat }) => {
+
+        return (
             <>
-            { (!dataFormat) ?  <Loading/> : 
-            <div className="user-section">
-                <Greetings firstName={dataFormat[0].firstName} lastName={dataFormat[0].lastName} />
-                <section className="activity">
-                    <div className="desc-activity">
-                        <Activity data={dataFormat[1]}/>
-                        <div className="others-info">
-                            <AverageSessions data={dataFormat[2]}/>
-                            <Performance kindValues={dataFormat[3].kindValues} kind={dataFormat[3].kind} />
-                            <Score data={dataFormat[0].score}/>
-                        </div>
+                {(!dataFormat) ? <Loading /> :
+                    <div className="user-section">
+                        <Greetings firstName={dataFormat[0].firstName} lastName={dataFormat[0].lastName} />
+                        <section className="activity">
+                            <div className="desc-activity">
+                                <Activity data={dataFormat[1]} />
+                                <div className="others-info">
+                                    <AverageSessions data={dataFormat[2]} />
+                                    <Performance kindValues={dataFormat[3].kindValues} kind={dataFormat[3].kind} />
+                                    <Score data={dataFormat[0].score} />
+                                </div>
+                            </div>
+                            <AsideInfos data={dataFormat[0].keydata} />
+                        </section>
                     </div>
-                    <AsideInfos data={dataFormat[0].keydata}/>
-                </section>
-            </div> 
-            }
+                }
             </>
         )
     }
-    
+
     HomeRender.propTypes = {
-        dataFormat : PropTypes.array
+        dataFormat: PropTypes.array
     };
 
     /**
@@ -118,8 +118,8 @@ export default function Home(){
      */
     return (
         <>
-            <Suspense fallback={ <Loading/> } >
-               <HomeRender dataFormat={formatData()} />
+            <Suspense fallback={<Loading />} >
+                <HomeRender dataFormat={formatData()} />
             </Suspense>
         </>
     )
