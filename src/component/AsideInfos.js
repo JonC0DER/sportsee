@@ -2,14 +2,23 @@ import PropTypes from 'prop-types'
 import React from 'react'
 /**
  * get props to set the aside information
- * @param {*} param0 
- * @returns 
+ * @param {object} data
+ * 
+ * @component 
+ * @example
+ *  data = {
+ *      calorieCount : 2930
+ *      carbohydrateCount : 290
+ *      lipidCount : 50
+ *      proteinCount : 365
+ * } 
+ * @returns {component}
  */
 function AsideInfos({ data }) {
     //console.log(data)
     /**
     * this array contain informations to interact with the props
-    * and set icons colors and text
+    * and set icons colors and text into the component
     */
     const asideData = [
         ["red", "fire", "Calories", "kCal", "calorieCount"],

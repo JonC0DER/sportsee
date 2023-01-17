@@ -6,17 +6,17 @@ import RouterComponent from './RouterComponent';
 
 /**
  * that function return all the application to the index.js
- * @returns 
+ * @returns {component} 
  */
 function App() {
   return (
-      <BrowserRouter>
-          <Header />
-          <div className="vnav-and-content">
-            <VnavBar />
-            <RouterComponent/>
-          </div>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Header />
+      <div className="vnav-and-content">
+        <VnavBar />
+        <RouterComponent />
+      </div>
+    </BrowserRouter>
   )
 }
 

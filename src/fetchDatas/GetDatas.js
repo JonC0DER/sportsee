@@ -4,8 +4,8 @@ import { useLocation } from 'react-router-dom';
 
 
 /**
- * create the mock data
- * @return Mocking data
+ * create the mock data with export asset
+ * @return {array} Mocking data
 */
 const GetMock = () => {
     const {
@@ -27,7 +27,25 @@ const GetMock = () => {
 
 /**
  * variables initialisation
- * @returns Array
+ * the link + end-point wich is the user id
+ * @param {string} string from location path
+ * 
+ * @function
+ * @example
+ * get location : "http://localhost:3000/user/12"
+ * then split it to have the path and the end-point user_id
+ * then parseInt() the user_id "12" -> 12
+ * so we got an array like:
+ * [
+ *   string,
+ *   integer
+ * ]
+ * 
+ * [
+ *  "http://localhost:3000/user/",
+ *  12
+ * ]
+ * @returns {Array} [link, userID]
  */
 const InitVariables = () => {
     const location = useLocation();
@@ -40,8 +58,78 @@ const InitVariables = () => {
 }
 
 /**
- * fetch data with axios 
- * @returns array Datas
+ * fetch data with axios & return it 
+ * @param {array} array of 2 elements from InitVariables()
+ * 
+ * @function
+ * @example
+ * [
+ *      {
+ *          "data": {
+ *              "id":42,
+ *              "userInfos": {
+ *                  "firstName":"John",
+ *                  "lastName":"CODER",
+ *                  "age":37
+ *              },
+ *              "todayScore": 0.18,
+ *              "keyData": {
+ *                  "calorieCount":2930,
+ *                  "proteinCount":365,
+ *                  "carbohydrateCount":290,
+ *                  "lipidCount":50
+ *              }
+ *          }
+ *      },
+ *      {
+ *          "data": {
+ *              "userId":42,
+ *              "sessions": [
+ *                  {
+ *                      "day":"2020-07-01",
+ *                      "kilogram":70,
+ *                      "calories":120
+ *                  },
+ *                  {...},
+ *              ]
+ *          }
+ *      },
+ *      {
+ *          "data": {
+ *              "userId":42,
+ *              "sessions": [
+ *                  {
+ *                      "day":1,
+ *                      "sessionLength":30
+ *                  },
+ *                  {
+ *                      "day":2,
+ *                      "..."
+ *                  },
+ *                  {...},
+ *              ]
+ *          }
+ *      },
+ *      {
+ *          "data": {
+ *              "userId": 42,
+ *              "kind": {
+ *                  "1":"cardio",
+ *                  "2":"energy",
+ *                  ...
+ *              },
+ *              "data":[
+ *                  {
+ *                      "value":180,
+ *                      "kind":1
+ *                  },
+ *                  {"value":220,"kind":2},
+ *                  {...},
+ *              ]
+ *          }
+ *      }
+ * ] or return the mock if it's failed
+ * @returns {array} [Datas] 
  */
 const GetDatas = () => {
     const link = InitVariables()[0];

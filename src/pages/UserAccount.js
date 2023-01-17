@@ -11,13 +11,14 @@ import PropTypes from 'prop-types';
 import Greetings from '../component/Greetings';
 
 /**
- * @returns Home component
+ * this component return the user account app
+ * @returns {component} Home component
  */
 export default function UserAccount() {
     /**
      * loader help the user to understand 
      * that we are fetching the datas
-     * @returns loader component
+     * @returns {component} loader component
      */
     const Loading = () => {
         return (
@@ -36,16 +37,13 @@ export default function UserAccount() {
     /**
      * make sure that the datas are ready to use
      * format them and return an array
-     * @returns array
+     * @param {array} data an array of multiple objects
+     * that we call with axios
+     * @returns {array}
      */
-    /*const returnInitDatas = async() =>{
-        const datas = await InitDatas();
-        return datas
-    }*/
-
     const formatData = () => {
         const ex = GetDatas();
-        //console.log(ex)
+        console.log(ex)
         if (ex === '[]') {
             console.log('not load')
         } else {
@@ -81,8 +79,8 @@ export default function UserAccount() {
     /**
      * set all the format data to all the components
      * that compose the user home page
-     * @param {*} param0 
-     * @returns HomeRender component
+     * @param {array}
+     * @returns {component} HomeRender component
      */
     const HomeRender = ({ dataFormat }) => {
 

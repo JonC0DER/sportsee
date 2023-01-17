@@ -5,7 +5,7 @@ import HnavBar from './HnavBar';
 /**
  * the component return the header of the app
  * with the horizontal navigation menu
- * @returns 
+ * @returns {component}
  */
 function Header() {
     return (

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 /**
  * the component return the vertical navigation menu
  * and the copyright
- * @returns 
+ * @returns  {component}
  */
 function VnavBar() {
 

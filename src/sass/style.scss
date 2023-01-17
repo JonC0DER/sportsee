@@ -103,9 +103,10 @@ header{
     padding-right: 25px;
     background-color: black;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     div.logo{
+        width: 25vh;
         display: flex;
         align-items: center;
         h1{
@@ -116,8 +117,10 @@ header{
 
     /* """"""""""""""""""""" NAVIGATION HORIZONTAL */
     nav.h-nav{
+        margin-left: 5vh;
+        width: 70vh;
         ul{
-            width: 994px;
+            width: 100%;
             display: flex;
             justify-content: space-around;
             li{

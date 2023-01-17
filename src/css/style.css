@@ -100,15 +100,16 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   /* """"""""""""""""""""" NAVIGATION HORIZONTAL */
 }
 header div.logo {
+  width: 25vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -120,8 +121,12 @@ header div.logo h1 {
   color: #E60000;
   margin-left: 10px;
 }
+header nav.h-nav {
+  margin-left: 5vh;
+  width: 70vh;
+}
 header nav.h-nav ul {
-  width: 994px;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
