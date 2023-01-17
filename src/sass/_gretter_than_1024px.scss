@@ -1,0 +1,82 @@
+@media screen and (min-width: 1101px){
+    section.activity{
+       /* height: var(--activity-h);
+        display: flex;
+        justify-content: space-between;*/
+        div.desc-activity{
+            width: 835px;
+           /* display: flex;
+            flex-direction: column;
+            justify-content: inherit;
+            & > div,
+            & > div > div{
+                border-radius: 5px;*/
+        }
+            div.activity{
+                background-color: #FBFBFB;
+                width: 100%;
+                height: 320px;   
+            }
+            div.others-info{
+                display: flex;
+                justify-content: space-between;
+                div.average-session,
+                div.performance,
+                div.score{
+                    width: 258px;
+                    height: 263px;
+                }
+                div.average-session{
+                    background-color: #FF0000;
+                }
+                div.performance{
+                    background-color: #282D30;
+                }
+                div.score{
+                    background-color: #FBFBFB;
+                }
+            }
+    }
+       /*""""""""""""""""""""""" ASIDE INFO */
+        aside{
+            margin-left: 40px;
+            height: inherit;
+            width: 258px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            div.info{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                border-radius: 5px;
+                width: 100%;
+                height: 124px;
+                background-color: #FBFBFB;
+                span.icone{
+                    width: 60px;
+                    height:60px;
+                    border-radius: 6px;
+                    margin-right: 24px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    i{
+                        font-size: 20px;
+                    }
+                }
+                span.units-info{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    h3{
+                        color:var(--units);
+                    }
+                    p{
+                        color: var(--p-info);
+                    }
+                }
+            }
+        }
+}
+
