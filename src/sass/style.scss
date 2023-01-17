@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
-
+@import "_gretter_than_1024px.scss";
+@import "_1024px.scss";
 *{
     padding: 0;
     margin: 0;
@@ -206,7 +207,6 @@ div.user-section{
         display: flex;
         justify-content: space-between;
         div.desc-activity{
-            width: 835px;
             display: flex;
             flex-direction: column;
             justify-content: inherit;
@@ -217,17 +217,11 @@ div.user-section{
             div.activity{
                 background-color: #FBFBFB;
                 width: 100%;
-                height: 320px;   
             }
             div.others-info{
                 display: flex;
                 justify-content: space-between;
-                div.average-session,
-                div.performance,
-                div.score{
-                    width: 258px;
-                    height: 263px;
-                }
+
                 div.average-session{
                     background-color: #FF0000;
                 }
@@ -243,7 +237,6 @@ div.user-section{
         aside{
             margin-left: 40px;
             height: inherit;
-            width: 258px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -253,7 +246,6 @@ div.user-section{
                 align-items: center;
                 border-radius: 5px;
                 width: 100%;
-                height: 124px;
                 background-color: #FBFBFB;
                 span.icone{
                     width: 60px;
