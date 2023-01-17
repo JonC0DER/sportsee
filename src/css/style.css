@@ -1,4 +1,255 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+@media screen and (min-width: 1101px) {
+  section.activity {
+    /* height: var(--activity-h);
+     display: flex;
+     justify-content: space-between;*/
+  }
+  section.activity div.desc-activity {
+    width: 835px;
+    /* display: flex;
+     flex-direction: column;
+     justify-content: inherit;
+     & > div,
+     & > div > div{
+         border-radius: 5px;*/
+  }
+  section.activity div.activity {
+    background-color: #FBFBFB;
+    width: 100%;
+    height: 320px;
+  }
+  section.activity div.others-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  section.activity div.others-info div.average-session,
+section.activity div.others-info div.performance,
+section.activity div.others-info div.score {
+    width: 258px;
+    height: 263px;
+  }
+  section.activity div.others-info div.average-session {
+    background-color: #FF0000;
+  }
+  section.activity div.others-info div.performance {
+    background-color: #282D30;
+  }
+  section.activity div.others-info div.score {
+    background-color: #FBFBFB;
+  }
+  /*""""""""""""""""""""""" ASIDE INFO */
+  aside {
+    margin-left: 40px;
+    height: inherit;
+    width: 258px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  aside div.info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-radius: 5px;
+    width: 100%;
+    height: 124px;
+    background-color: #FBFBFB;
+  }
+  aside div.info span.icone {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    margin-right: 24px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  aside div.info span.icone i {
+    font-size: 20px;
+  }
+  aside div.info span.units-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  aside div.info span.units-info h3 {
+    color: var(--units);
+  }
+  aside div.info span.units-info p {
+    color: var(--p-info);
+  }
+}
+@media screen and (min-width: 990px) and (max-width: 1100px) {
+  /* """"""""""""""""""""" USER SECTION */
+  div.user-section {
+    padding: var(--user-section-pd);
+    width: 88.5%;
+    /*h1.hello{
+        font-size: 48px;
+        font-weight: 500;
+        line-height: var(--user-msg-lh);
+        span.red-name{
+            color: #E60000;
+        }
+    }
+    p.msg-progress{
+        font-weight: 400;
+        font-size:18px;
+        line-height:var(--user-msg-lh);
+        margin-top: var(--p-msg-mt);
+        margin-bottom: var(--p-msg-mb);
+    }*/
+    /*""""""""""""""""""""""" ASIDE INFO */
+  }
+  div.user-section section.activity {
+    height: var(--activity-h);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  div.user-section section.activity div.desc-activity {
+    width: 75%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: inherit;
+        -ms-flex-pack: inherit;
+            justify-content: inherit;
+  }
+  div.user-section section.activity div.desc-activity > div, div.user-section section.activity div.desc-activity > div > div {
+    border-radius: 5px;
+  }
+  div.user-section section.activity div.desc-activity div.activity {
+    background-color: #FBFBFB;
+    width: 100%;
+    height: 235px;
+  }
+  div.user-section section.activity div.desc-activity div.others-info {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  div.user-section section.activity div.desc-activity div.others-info div.average-session,
+div.user-section section.activity div.desc-activity div.others-info div.performance,
+div.user-section section.activity div.desc-activity div.others-info div.score {
+    width: 30%;
+  }
+  div.user-section section.activity div.desc-activity div.others-info div.average-session {
+    background-color: #FF0000;
+  }
+  div.user-section section.activity div.desc-activity div.others-info div.performance {
+    background-color: #282D30;
+  }
+  div.user-section section.activity div.desc-activity div.others-info div.score {
+    background-color: #FBFBFB;
+  }
+  div.user-section aside {
+    margin-left: 40px;
+    height: inherit;
+    width: 23%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  div.user-section aside div.info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-radius: 5px;
+    width: 100%;
+    height: 20%;
+    background-color: #FBFBFB;
+  }
+  div.user-section aside div.info span.icone {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    margin-right: 24px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  div.user-section aside div.info span.icone i {
+    font-size: 20px;
+  }
+  div.user-section aside div.info span.units-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  div.user-section aside div.info span.units-info h3 {
+    color: var(--units);
+  }
+  div.user-section aside div.info span.units-info p {
+    color: var(--p-info);
+  }
+}
 * {
   padding: 0;
   margin: 0;
@@ -247,7 +498,6 @@ div.user-section section.activity {
   /*""""""""""""""""""""""" ASIDE INFO */
 }
 div.user-section section.activity div.desc-activity {
-  width: 835px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -265,7 +515,6 @@ div.user-section section.activity div.desc-activity > div, div.user-section sect
 div.user-section section.activity div.desc-activity div.activity {
   background-color: #FBFBFB;
   width: 100%;
-  height: 320px;
 }
 div.user-section section.activity div.desc-activity div.others-info {
   display: -webkit-box;
@@ -274,12 +523,6 @@ div.user-section section.activity div.desc-activity div.others-info {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-}
-div.user-section section.activity div.desc-activity div.others-info div.average-session,
-div.user-section section.activity div.desc-activity div.others-info div.performance,
-div.user-section section.activity div.desc-activity div.others-info div.score {
-  width: 258px;
-  height: 263px;
 }
 div.user-section section.activity div.desc-activity div.others-info div.average-session {
   background-color: #FF0000;
@@ -293,7 +536,6 @@ div.user-section section.activity div.desc-activity div.others-info div.score {
 div.user-section section.activity aside {
   margin-left: 40px;
   height: inherit;
-  width: 258px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -316,7 +558,6 @@ div.user-section section.activity aside div.info {
           align-items: center;
   border-radius: 5px;
   width: 100%;
-  height: 124px;
   background-color: #FBFBFB;
 }
 div.user-section section.activity aside div.info span.icone {
