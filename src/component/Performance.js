@@ -40,8 +40,7 @@ function Performance({ kindValues, kind }) {
      * initialise svg element
      */
     const svg = d3.select(d3chart.current)
-      .attr("width", w)
-      .attr("height", h);
+      .attr("viewBox", `0 0 ${h} ${w}`);
 
     /**
      * create a svg group that contain all the polygons

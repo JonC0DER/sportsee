@@ -37,8 +37,7 @@ function Activity({ data }) {
      * initialise svg element
      */
     const svg = d3.select(d3chart.current)
-      .attr("width", w)
-      .attr("height", h);
+      .attr("viewBox", `0 0 ${w} ${h}`);
 
     /**
      * set title in svg
