@@ -28,7 +28,7 @@
     "docs": "jsdoc -c jsdoc.conf.json",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b gh-pages -d build"
+    "deploy": "gh-pages -b gitdeploy -d build"
   },
   "repository": {
     "type": "git",
