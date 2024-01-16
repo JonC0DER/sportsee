@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 
@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
  * create the mock data with export asset
  * @return {array} Mocking data
 */
-const GetMock = () => {
+const useMockData = () => {
     const {
         USER_MAIN_DATA,
         USER_ACTIVITY,
@@ -20,7 +20,7 @@ const GetMock = () => {
         { data: USER_AVERAGE_SESSIONS[0] },
         { data: USER_PERFORMANCE[0] }
     ];
-    const mock = /*JSON.stringify(*/mocks//)
+    const mock = JSON.stringify(mocks)
 
     return mock
 }
@@ -46,16 +46,22 @@ const GetMock = () => {
  *  12
  * ]
  * @returns {Array} [link, userID]
- */
-const InitVariables = () => {
-    const location = useLocation();
-    const ArrayPath = location.pathname.split('/');
-    const userID = ArrayPath.filter(node =>
+*/
+
+const extractUserIDFromPath = (path) => {
+    const ArrayPath = path.split('/');
+    const userID = ArrayPath.find(node =>
         (Number.isInteger(parseInt(node))) ? node : null
     )[0];
 
+    return userID;
+};
+
+const useInitVariables = () => {
+    const uselocation = useLocation();
+    const userID = extractUserIDFromPath(uselocation.pathname);
     return ["http://localhost:3000/user/", userID]
-}
+};
 
 /**
  * fetch data with axios & return it 
@@ -131,32 +137,38 @@ const InitVariables = () => {
  * ] or return the mock if it's failed
  * @returns {array} [Datas] 
  */
-const GetDatas = () => {
-    const link = InitVariables()[0];
-    const userID = InitVariables()[1];
+const useGetRes = () => {
+    const [link, userID] = useInitVariables();
 
     const [post, setPost] = useState([]);
-
-    const client = axios.create({
-        baseURL: `${link}${userID}/`
-    });
-    const folder = useMemo(() => (["", "activity", "average-sessions", "performance"]), []);
-    const allApi = folder.map(el => client.get(el));
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const ApiArray = [];
-        axios.all(allApi)
-            .then(axios.spread((...responses) => {
-                responses.map(res => ApiArray.push(res.data));
+        const fetchData = async () => {
+            try {
+                const client = axios.create({
+                    baseURL: `${link}${userID}/`
+                });
+
+                const folder = ["", "activity", "average-sessions", "performance"];
+                const allApi = folder.map(el => client.get(el));
+
+                const responses = await axios.all(allApi);
+                const ApiArray = responses.map(res => res.data);
+
                 setPost(ApiArray)
-            }))
-            .catch((error) => {
+                setLoading(false)
+            } catch (error) {
                 console.log(error)
-                setPost(GetMock())
-            })
-    }, []); // eslint-disable-line
+                setLoading(false)
+            }
+        };
 
+        fetchData();
+    }, [link, userID]); // eslint-disable-line
+
+    if (loading) return 'Chargement...';
     return JSON.stringify(post)
-}
+};
 
-export default GetDatas;
+export { useGetRes, useMockData };

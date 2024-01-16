@@ -4,7 +4,7 @@ import AverageSessions from '../component/AverageSessions';
 import Performance from '../component/Performance';
 import Score from '../component/Score';
 import AsideInfos from '../component/AsideInfos';
-import GetDatas from '../fetchDatas/GetDatas';
+import { useGetRes, useMockData } from '../fetchDatas/GetDatas';
 //const LazyGetDatas = React.lazy(()=> import('../fetchDatas/GetDatas'))
 import ReactLoading from "react-loading";
 import PropTypes from 'prop-types';
@@ -15,6 +15,10 @@ import Greetings from '../component/Greetings';
  * @returns {component} Home component
  */
 export default function UserAccount() {
+
+    const mock = JSON.parse(useMockData());
+    const api = useGetRes();
+
     /**
      * loader help the user to understand 
      * that we are fetching the datas
@@ -25,14 +29,16 @@ export default function UserAccount() {
             <div className='loading'>
                 <h1>LOADING...</h1>
                 <div className='loader'>
-                    {<ReactLoading
+                    <ReactLoading
                         type="bars"
                         color="red"
-                        height={800} width={200} />}
+                        height={800}
+                        width={200}
+                    />
                 </div>
             </div>
         )
-    }
+    };
 
     /**
      * make sure that the datas are ready to use
@@ -41,15 +47,8 @@ export default function UserAccount() {
      * that we call with axios
      * @returns {array}
      */
-    const formatData = () => {
-        const ex = GetDatas();
-        console.log(ex)
-        if (ex === '[]') {
-            console.log('not load')
-        } else {
-            //console.log(ex)
-            const dApi = JSON.parse(ex);
-            //console.log(dApi[0].data.userInfos)
+    const formatData = (dApi) => {
+        if (dApi && dApi.length >= 4) {
             const user = {
                 id: dApi[0].data.id,
                 keydata: dApi[0].data.keyData,
@@ -71,10 +70,12 @@ export default function UserAccount() {
                 kindValues: dApi[3].data.data,
                 kind: dApi[3].data.kind
             }
-            //console.log( [user, activity, average, performance] )
+
             return [user, activity, average, performance]
         }
-    }
+
+        return null
+    };
 
     /**
      * set all the format data to all the components
@@ -82,7 +83,13 @@ export default function UserAccount() {
      * @param {array}
      * @returns {component} HomeRender component
      */
-    const HomeRender = ({ dataFormat }) => {
+    const HomeRender = () => {
+        const readyData = (typeof api === 'string' && api === 'Chargement...')
+            ? mock
+            : (typeof JSON.parse(api) === 'object')
+                ? JSON.parse(api) : mock;
+
+        const dataFormat = formatData(mock);
 
         return (
             <>
@@ -104,7 +111,7 @@ export default function UserAccount() {
                 }
             </>
         )
-    }
+    };
 
     HomeRender.propTypes = {
         dataFormat: PropTypes.array
@@ -117,7 +124,7 @@ export default function UserAccount() {
     return (
         <>
             <Suspense fallback={<Loading />} >
-                <HomeRender dataFormat={formatData()} />
+                <HomeRender />
             </Suspense>
         </>
     )
