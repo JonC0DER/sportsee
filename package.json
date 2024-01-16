@@ -30,6 +30,10 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:JonC0DER/sportsee.git"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
